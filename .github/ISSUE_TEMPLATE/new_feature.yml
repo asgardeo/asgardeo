@@ -1,0 +1,74 @@
+name: '✨ Request a new feature'
+description: Propose something an SDK or sample does not do yet.
+labels: ['Type/New Feature']
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      description: The SDK package or sample this is about. Pick "Sample app or template" for a sample repository. npm packages start with `@asgardeo/`, Maven artifacts with `io.asgardeo:`, Go modules with `github.com/asgardeo/`, and Python packages are `asgardeo` and `asgardeo_ai`. Pick more than one if needed.
+      multiple: true
+      options:
+        - '@asgardeo/javascript'
+        - '@asgardeo/browser'
+        - '@asgardeo/node'
+        - '@asgardeo/react'
+        - '@asgardeo/react-router'
+        - '@asgardeo/tanstack-router'
+        - '@asgardeo/nextjs'
+        - '@asgardeo/vue'
+        - '@asgardeo/nuxt'
+        - '@asgardeo/express'
+        - '@asgardeo/i18n'
+        - '@asgardeo/auth-js'
+        - '@asgardeo/auth-spa'
+        - '@asgardeo/auth-react'
+        - '@asgardeo/auth-node'
+        - '@asgardeo/auth-express'
+        - '@asgardeo/token-exchange-plugin'
+        - '@asgardeo/passport-asgardeo'
+        - '@asgardeo/remix-auth-asgardeo'
+        - '@asgardeo/mcp-express'
+        - '@asgardeo/mcp-node'
+        - 'io.asgardeo:java-oidc-sdk'
+        - 'io.asgardeo:java-saml-sdk'
+        - 'io.asgardeo:tomcat-oidc-agent'
+        - 'io.asgardeo:tomcat-saml-agent'
+        - 'io.asgardeo:asgardeo-android'
+        - 'io.asgardeo:asgardeo-android-core'
+        - 'io.asgardeo:asgardeo-android-core-auth-direct'
+        - 'github.com/asgardeo/go'
+        - 'github.com/asgardeo/mcp'
+        - 'asgardeo'
+        - 'asgardeo_ai'
+        - 'Sample app or template'
+        - 'Other / not sure'
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do that is not supported today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: How you would like it to work. Include API sketches if you have them.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched the existing issues and this is not a duplicate.
+          required: true

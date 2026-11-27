@@ -1,0 +1,41 @@
+name: Label issues by package
+
+# Issue forms cannot set labels from a dropdown answer, so this reads the
+# "Package" field and adds the matching package labels plus Component/SDK,
+# or Component/Sample for "Sample app or template".
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || '';
+            const match = body.match(/^### Package\s*\n+([\s\S]*?)(?=\n### |$)/m);
+            if (!match) return;
+
+            const answers = match[1].split(',').map((s) => s.trim()).filter(Boolean);
+            const existing = new Set(
+              (await github.paginate(github.rest.issues.listLabelsForRepo, {
+                ...context.repo,
+                per_page: 100,
+              })).map((l) => l.name),
+            );
+
+            const labels = answers.filter((a) => existing.has(a));
+            if (labels.length > 0) labels.push('Component/SDK');
+            if (answers.includes('Sample app or template')) labels.push('Component/Sample');
+            if (labels.length === 0) labels.push('needs-package-triage');
+
+            await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: context.payload.issue.number,
+              labels,
+            });
