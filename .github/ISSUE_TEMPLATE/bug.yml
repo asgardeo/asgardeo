@@ -1,0 +1,83 @@
+name: '🐞 Report a bug'
+description: Something in a WSO2 Identity Platform SDK or sample does not work as expected.
+labels: ['Type/Bug']
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      description: The SDK package or sample this is about. Pick "Sample app or template" for a sample repository. npm packages start with `@asgardeo/`, Maven artifacts with `io.asgardeo:`, Go modules with `github.com/asgardeo/`, and Python packages are `asgardeo` and `asgardeo_ai`. Pick more than one if needed.
+      multiple: true
+      options:
+        - '@asgardeo/javascript'
+        - '@asgardeo/browser'
+        - '@asgardeo/node'
+        - '@asgardeo/react'
+        - '@asgardeo/react-router'
+        - '@asgardeo/tanstack-router'
+        - '@asgardeo/nextjs'
+        - '@asgardeo/vue'
+        - '@asgardeo/nuxt'
+        - '@asgardeo/express'
+        - '@asgardeo/i18n'
+        - '@asgardeo/auth-js'
+        - '@asgardeo/auth-spa'
+        - '@asgardeo/auth-react'
+        - '@asgardeo/auth-node'
+        - '@asgardeo/auth-express'
+        - '@asgardeo/token-exchange-plugin'
+        - '@asgardeo/passport-asgardeo'
+        - '@asgardeo/remix-auth-asgardeo'
+        - '@asgardeo/mcp-express'
+        - '@asgardeo/mcp-node'
+        - 'io.asgardeo:java-oidc-sdk'
+        - 'io.asgardeo:java-saml-sdk'
+        - 'io.asgardeo:tomcat-oidc-agent'
+        - 'io.asgardeo:tomcat-saml-agent'
+        - 'io.asgardeo:asgardeo-android'
+        - 'io.asgardeo:asgardeo-android-core'
+        - 'io.asgardeo:asgardeo-android-core-auth-direct'
+        - 'github.com/asgardeo/go'
+        - 'github.com/asgardeo/mcp'
+        - 'asgardeo'
+        - 'asgardeo_ai'
+        - 'Sample app or template'
+        - 'Other / not sure'
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      description: The version you are using, or a commit hash.
+      placeholder: e.g. 1.4.2
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened, and what did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The smallest set of steps or code that shows the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Runtime, framework and browser or OS versions, as relevant.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched the existing issues and this is not a duplicate.
+          required: true
